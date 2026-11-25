@@ -1,0 +1,38 @@
+name: SubWidget
+options:
+  bundleIdPrefix: com.mtech
+  deploymentTarget:
+    iOS: "16.0"
+
+targets:
+  SubWidget:
+    type: application
+    platform: iOS
+    sources: [App]
+    settings:
+      base:
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.mtech.SubWidget
+    entitlements:
+      path: App/SubWidget.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.mtech.SubWidget
+    dependencies:
+      - target: SubWidgetExtension
+
+  SubWidgetExtension:
+    type: app-extension
+    platform: iOS
+    sources: [Widget]
+    info:
+      path: Widget/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.mtech.SubWidget.widget
+    entitlements:
+      path: Widget/SubWidgetExtension.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.mtech.SubWidget
